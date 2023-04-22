@@ -16,90 +16,90 @@
                 <div class="columns">
                     <div>
                         <label>
-                            <input id="auto_low" type="number" value="0">
-                            Auto Low Pieces
-                        </label>
-                    </div>
-                    <div>
-                        <label>
-                            <input id="auto_mid" type="number" value="0">
-                            Auto Mid Pieces
-                        </label>
-                    </div>
-                    <div>
-                        <label>
-                            <input id="auto_high" type="number" value="0">
+                            <input type="number" value="0" id="auto_high" >
                             Auto High Pieces
                         </label>
                     </div>
                     <div>
                         <label>
-                            <input id="auto_dock" type="number" value="0">
+                            <input type="number" value="0" id="auto_mid" >
+                            Auto Mid Pieces
+                        </label>
+                    </div>
+                    <div>
+                        <label>
+                            <input type="number" value="0" id="auto_low" >
+                            Auto Low Pieces
+                        </label>
+                    </div>
+                    <div>
+                        <label>
+                            <input type="number" value="0" id="auto_dock" >
                             Auto docked robots
                         </label>
                     </div>
                     <div>
                         <label>
-                            <input id="auto_balance" type="number" value="0">
+                            <input type="number" value="0" id="auto_balance" >
                             Auto balanced robots
                         </label>
                     </div>
                     <div>
                         <label>
-                            <input id="mobility" type="number" value="0">
+                            <input type="number" value="0" id="mobility" >
                             Number of mobility robots
                         </label>
                     </div>
                 </div>
             </div>
             <div class="section">
-                <h2>Teleop</h2>
+                <h2>All</h2>
                 <div class="columns">
                     <div>
                         <label>
-                            <input id="tele_low" type="number" value="0">
-                            Teleop Low Pieces
+                            <input type="number" value="0" id="all_high" >
+                            All High Pieces
                         </label>
                     </div>
                     <div>
                         <label>
-                            <input id="tele_mid" type="number" value="0">
-                            Teleop Mid Pieces
+                            <input type="number" value="0" id="all_mid" >
+                            All Mid Pieces
                         </label>
                     </div>
                     <div>
                         <label>
-                            <input id="tele_high" type="number" value="0">
-                            Teleop High Pieces
+                            <input type="number" value="0" id="all_low" >
+                            All Low Pieces
                         </label>
                     </div>
                     <div>
                         <label>
-                            <input id="tele_dock" type="number" value="0">
-                            Teleop docked robots
+                            <input type="number" value="0" id="end_dock" >
+                            Endgame docked robots
                         </label>
                     </div>
                     <div>
                         <label>
-                            <input id="tele_balance" type="number" value="0">
-                            Teleop balanced robots
+                            <input type="number" value="0" id="end_balance" >
+                            Endgame balanced robots
                         </label>
                     </div>
                     <div>
                         <label>
-                            <input id="parked" type="number" value="0">
+                            <input type="number" value="0" id="parked" >
                             Number of parked robots
                         </label>
                     </div>
                     <div>
                         <label>
-                            <input id="supercharged" type="number" value="0">
+                            <input type="number" value="0" id="supercharged" >
                             Supercharged Nodes
                         </label>
                     </div>
                     <div>
                         <label>
-                            <input id="links" type="number" value="0">
+                            <input type="number" value="0" id="links" >
                             Number of links
                         </label>
                     </div>
@@ -107,8 +107,29 @@
             </div>
 
             <div class="section">
-                <h2>Final Score:</h2>
-                <div id="score" class="field">0</div>
+                <h2>Scores</h2>
+                <div class="columns">
+                    <div>
+                        <span id="mobility_score" class="field">0</span>
+                        Auto Mobility
+                    </div>
+                    <div>
+                        <span id="grid_score" class="field">0</span>
+                        Grid
+                    </div>
+                    <div>
+                        <span id="station_score" class="field">0</span>
+                        Charge Station
+                    </div>
+                    <div>
+                        <span id="park_score" class="field">0</span>
+                        Endgame Park
+                    </div>
+                    <div>
+                        <span id="total_score" class="field">0</span>
+                        Total without Fouls
+                    </div>
+                </div>
                 <button id="reset">Reset</button>
             </div>
         </div>

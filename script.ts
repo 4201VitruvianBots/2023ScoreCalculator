@@ -1,16 +1,16 @@
 const inputs = Object.fromEntries([
     'auto_low', 'auto_mid', 'auto_high',
-    'tele_low', 'tele_mid', 'tele_high',
+    'all_low', 'all_mid', 'all_high',
     'supercharged', 'links',
     'auto_balance', 'auto_dock', 'mobility',
-    'tele_balance', 'tele_dock', 'parked'
+    'end_balance', 'end_dock', 'parked'
 ].map(e => [e, <HTMLInputElement>document.getElementById(e)!]));
 
-const output = document.getElementById('score')!;
+const outputs = Object.fromEntries([
+    'mobility', 'grid', 'station', 'park', 'total'
+].map(e => [e, <HTMLInputElement>document.getElementById(e + '_score')!]));
 
 const resetButton = document.getElementById('reset')!;
-
-console.log(inputs);
 
 const updateScore = () => {
     const scores = Object.fromEntries(
@@ -18,23 +18,35 @@ const updateScore = () => {
             .map(([k,v]) => [k, parseInt(v.value)])
     );
 
-    const score =
+    const mobility_score =
+       3 * scores.mobility;
+
+    const grid_score =
        3 * scores.auto_low +
        4 * scores.auto_mid +
        6 * scores.auto_high +
-       2 * scores.tele_low +
-       3 * scores.tele_mid +
-       5 * scores.tele_high +
+       2 * (scores.all_low - scores.auto_low) +
+       3 * (scores.all_mid - scores.auto_mid) +
+       5 * (scores.all_high - scores.auto_high) +
        3 * scores.supercharged +
-       5 * scores.links +
-       6 * scores.tele_dock +
-       10 * scores.tele_balance +
-       3 * scores.mobility +
+       5 * scores.links;
+
+    const station_score =
+       6 * scores.end_dock +
+       10 * scores.end_balance +
        8 * scores.auto_dock +
-       12 * scores.auto_balance +
+       12 * scores.auto_balance;
+
+    const park_score =
        2 * scores.parked;
 
-    output.innerText = score.toString();
+    const total_score = mobility_score + grid_score + station_score + park_score;
+
+    outputs.mobility.innerText = mobility_score.toString();
+    outputs.grid.innerText = grid_score.toString();
+    outputs.station.innerText = station_score.toString();
+    outputs.park.innerText = park_score.toString();
+    outputs.total.innerText = total_score.toString();
 }
 
 const resetAll= () => {
@@ -42,7 +54,22 @@ const resetAll= () => {
     updateScore();
 }
 
-Object.values(inputs).forEach(e => e.addEventListener('change', updateScore));
+//const matchIfEqual = (target: HTMLInputElement) => (
+//    (event: Event) => {
+//        if ((event.target! as HTMLInputElement).value == target.value) {
+//            target.value = (event.target! as HTMLInputElement).value;
+//        }
+//    }
+//);
+//
+//[
+//    [inputs.auto_high, inputs.all_high],
+//    [inputs.auto_mid, inputs.all_mid],
+//    [inputs.auto_low, inputs.all_low]
+//].forEach(([auto, all]) => auto.addEventListener('input', matchIfEqual(all)));
+
+Object.values(inputs).forEach(e => e.addEventListener('input', updateScore));
+
 
 resetButton.addEventListener('click', resetAll);
 
