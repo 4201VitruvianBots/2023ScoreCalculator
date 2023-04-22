@@ -25,9 +25,9 @@ const updateScore = () => {
        3 * scores.auto_low +
        4 * scores.auto_mid +
        6 * scores.auto_high +
-       2 * (scores.all_low - scores.auto_low) +
-       3 * (scores.all_mid - scores.auto_mid) +
-       5 * (scores.all_high - scores.auto_high) +
+       2 * Math.min(0, scores.all_low - scores.auto_low) +
+       3 * Math.min(0, scores.all_mid - scores.auto_mid) +
+       5 * Math.min(0, scores.all_high - scores.auto_high) +
        3 * scores.supercharged +
        5 * scores.links;
 
